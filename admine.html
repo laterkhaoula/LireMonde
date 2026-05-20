@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LireMonde | Espace Administration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">LireMonde</div>
+            <ul class="nav-links">
+                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="alire.html">À lire</a></li>
+                <li><a href="admine.html" class="active">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-panel">
+        <h1 style="margin-bottom: 1.5rem;">Espace de Gestion des Livres (CRUD)</h1>
+        
+        <!-- Formulaire Unique d'Ajout et de Modification (User Story 6) -->
+        <form id="admin-book-form" class="admin-form">
+            <h3 id="form-action-title" style="margin-bottom: 1rem; color: var(--accent-color);">Ajouter un nouveau livre</h3>
+            <input type="hidden" id="book-id"> <!-- Champ caché crucial pour le mode édition -->
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="title">Titre du livre</label>
+                    <input type="text" id="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="author">Auteur</label>
+                    <input type="text" id="author" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="genre">Genre</label>
+                    <select id="genre" required>
+                        <option value="Classique">Classique</option>
+                        <option value="Science-fiction">Science-fiction</option>
+                        <option value="Drame">Drame</option>
+                        <option value="Fantasy">Fantasy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cover">URL de la couverture</label>
+                    <input type="url" id="cover" value="https://picsum.photos/id/1012/200/300" required>
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 1rem;">
+                <label for="description">Description / Synopsis</label>
+                <textarea id="description" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn-submit">Enregistrer le livre</button>
+            <button type="button" id="cancel-edit-btn" class="btn-delete" style="display: none; background:#95a5a6; margin-left: 0.5rem;">Annuler la modification</button>
+        </form>
+
+        <h2>Livres en Base de Données</h2>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Couverture</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Genre</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="admin-table-body">
+                <!-- Rempli par JavaScript -->
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>Panneau d'administration LireMonde - ReadSphere © 2026</p>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>

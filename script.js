@@ -435,3 +435,76 @@ function displayAdminBooks(data) {
    ADD / UPDATE BOOK
 ====================================== */
 
+if (form) {
+
+    form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const bookData = {
+
+            titre: titleInput.value,
+            auteur: authorInput.value,
+            genre: genreInput.value,
+            couverture: coverInput.value,
+            description: descriptionInput.value,
+            aLire: false
+        };
+
+        const bookId = bookIdInput.value;
+
+        try {
+
+            /* UPDATE */
+            if (bookId) {
+
+                const response = await fetch(`${API_URL}/${bookId}`, {
+
+                    method: "PUT",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(bookData)
+                });
+
+                if (!response.ok) {
+
+                    throw new Error("Erreur modification");
+                }
+
+            } else {
+
+                /* ADD */
+                const response = await fetch(API_URL, {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(bookData)
+                });
+
+                if (!response.ok) {
+
+                    throw new Error("Erreur ajout");
+                }
+            }
+
+            form.reset();
+
+            resetForm();
+
+            fetchBooks();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Erreur réseau");
+        }
+    });
+}

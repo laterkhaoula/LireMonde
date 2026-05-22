@@ -50,3 +50,99 @@ const formTitle = document.getElementById("form-action-title");
 const submitBtn = document.getElementById("submit-btn");
 const cancelEditBtn = document.getElementById("cancel-edit-btn");
 
+/* ======================================
+   FETCH BOOKS
+====================================== */
+
+async function fetchBooks() {
+
+    try {
+
+        const response = await fetch(API_URL);
+
+        if (!response.ok) {
+            throw new Error("Erreur chargement");
+        }
+
+        books = await response.json();
+
+        /* PAGE ACCUEIL */
+        if (booksContainer) {
+
+            displayBooks(books);
+            generateGenres(books);
+        }
+
+        /* PAGE A LIRE */
+        if (alireContainer) {
+
+            const favorites = books.filter(book => book.aLire);
+
+            displayALireBooks(favorites);
+        }
+
+        /* PAGE ADMIN */
+        if (tableBody) {
+
+            displayAdminBooks(books);
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        if (booksContainer) {
+            booksContainer.innerHTML = "<p>Erreur chargement livres</p>";
+        }
+
+        if (alireContainer) {
+            alireContainer.innerHTML = "<p>Erreur chargement livres</p>";
+        }
+
+        if (tableBody) {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="5">Erreur chargement</td>
+                </tr>
+            `;
+        }
+    }
+}
+
+/* ======================================
+   DISPLAY BOOKS ACCUEIL
+====================================== */
+
+function displayBooks(data) {
+
+    booksContainer.innerHTML = "";
+
+    if (data.length === 0) {
+
+        booksContainer.innerHTML = `
+            <p>Aucun livre trouvé.</p>
+        `;
+
+        return;
+    }
+
+    data.forEach(book => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("book-card");
+
+        card.innerHTML = `
+            <img src="${book.couverture}" alt="${book.titre}">
+            <h3>${book.titre}</h3>
+            <p>${book.auteur}</p>
+        `;
+
+        card.addEventListener("click", () => {
+            openModal(book);
+        });
+
+        booksContainer.appendChild(card);
+    });
+}
+

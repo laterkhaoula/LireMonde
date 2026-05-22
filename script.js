@@ -145,4 +145,3 @@ function displayBooks(data) {
         booksContainer.appendChild(card);
     });
 }
-

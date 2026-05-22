@@ -1,1 +1,28 @@
-{}
+{
+  "books": [
+    {
+      "id": "1",
+      "titre": "Les Misérables",
+      "auteur": "Victor Hugo",
+      "genre": "Classique",
+      "description": "Jean Valjean tente de reconstruire sa vie après des années de prison dans la France du XIXe siècle.",
+      "couverture": "https://covers.openlibrary.org/b/id/8231856-L.jpg",
+      "aLire": false
+    },
+    {
+     
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    },
+    {
+      
+    }
+  ]
+}

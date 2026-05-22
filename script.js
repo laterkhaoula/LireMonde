@@ -580,3 +580,19 @@ if (cancelEditBtn) {
    RESET FORM
 ====================================== */
 
+function resetForm() {
+
+    bookIdInput.value = "";
+
+    formTitle.textContent = "Ajouter un nouveau livre";
+
+    submitBtn.textContent = "Enregistrer le livre";
+
+    cancelEditBtn.style.display = "none";
+}
+
+/* ======================================
+   INIT
+====================================== */
+
+fetchBooks();

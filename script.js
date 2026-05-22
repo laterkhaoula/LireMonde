@@ -508,3 +508,75 @@ if (form) {
         }
     });
 }
+
+/* ======================================
+   DELETE BOOK
+====================================== */
+
+async function deleteBook(id) {
+
+    const confirmDelete = confirm("Supprimer ce livre ?");
+
+    if (!confirmDelete) return;
+
+    try {
+
+        const response = await fetch(`${API_URL}/${id}`, {
+
+            method: "DELETE"
+        });
+
+        if (!response.ok) {
+
+            throw new Error("Erreur suppression");
+        }
+
+        fetchBooks();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Erreur réseau");
+    }
+}
+
+/* ======================================
+   FILL FORM
+====================================== */
+
+function fillForm(book) {
+
+    bookIdInput.value = book.id;
+
+    titleInput.value = book.titre;
+    authorInput.value = book.auteur;
+    genreInput.value = book.genre;
+    coverInput.value = book.couverture;
+    descriptionInput.value = book.description;
+
+    formTitle.textContent = "Modifier le livre";
+
+    submitBtn.textContent = "Mettre à jour";
+
+    cancelEditBtn.style.display = "inline-block";
+}
+
+/* ======================================
+   CANCEL EDIT
+====================================== */
+
+if (cancelEditBtn) {
+
+    cancelEditBtn.addEventListener("click", () => {
+
+        form.reset();
+
+        resetForm();
+    });
+}
+
+/* ======================================
+   RESET FORM
+====================================== */
+

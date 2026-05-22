@@ -145,3 +145,293 @@ function displayBooks(data) {
         booksContainer.appendChild(card);
     });
 }
+
+/* ======================================
+   GENERATE GENRES
+====================================== */
+
+function generateGenres(data) {
+
+    if (!genreFilter) return;
+
+    genreFilter.innerHTML = `
+        <option value="all">Tous les genres</option>
+    `;
+
+    const genres = [...new Set(data.map(book => book.genre))];
+
+    genres.forEach(genre => {
+
+        const option = document.createElement("option");
+
+        option.value = genre;
+        option.textContent = genre;
+
+        genreFilter.appendChild(option);
+    });
+}
+
+/* ======================================
+   FILTRE
+====================================== */
+
+if (genreFilter) {
+
+    genreFilter.addEventListener("change", filterBooks);
+}
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", filterBooks);
+}
+
+function filterBooks() {
+
+    const selectedGenre = genreFilter.value;
+    const searchValue = searchInput.value.toLowerCase();
+
+    let filteredBooks = books;
+
+    if (selectedGenre !== "all") {
+
+        filteredBooks = filteredBooks.filter(book =>
+            book.genre === selectedGenre
+        );
+    }
+
+    filteredBooks = filteredBooks.filter(book =>
+
+        book.titre.toLowerCase().includes(searchValue) ||
+        book.auteur.toLowerCase().includes(searchValue)
+    );
+
+    displayBooks(filteredBooks);
+}
+
+/* ======================================
+   MODAL
+====================================== */
+
+function openModal(book) {
+
+    currentBook = book;
+
+    modal.style.display = "flex";
+
+    modalCover.src = book.couverture;
+    modalTitle.textContent = book.titre;
+    modalAuthor.textContent = book.auteur;
+    modalGenre.textContent = book.genre;
+    modalDescription.textContent = book.description;
+
+    updateModalButton(book.aLire);
+}
+
+/* ======================================
+   CLOSE MODAL
+====================================== */
+
+if (closeModalBtn) {
+
+    closeModalBtn.addEventListener("click", () => {
+
+        modal.style.display = "none";
+    });
+}
+
+window.addEventListener("click", (e) => {
+
+    if (e.target === modal) {
+
+        modal.style.display = "none";
+    }
+});
+
+/* ======================================
+   UPDATE BUTTON
+====================================== */
+
+function updateModalButton(isInList) {
+
+    if (isInList) {
+
+        modalToggleBtn.textContent = `
+            Retirer de la liste "À lire"
+        `;
+
+    } else {
+
+        modalToggleBtn.textContent = `
+            Ajouter à la liste "À lire"
+        `;
+    }
+}
+
+/* ======================================
+   TOGGLE A LIRE
+====================================== */
+
+if (modalToggleBtn) {
+
+    modalToggleBtn.addEventListener("click", async () => {
+
+        if (!currentBook) return;
+
+        try {
+
+            const response = await fetch(`${API_URL}/${currentBook.id}`, {
+
+                method: "PATCH",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    aLire: !currentBook.aLire
+                })
+            });
+
+            if (!response.ok) {
+
+                throw new Error("Erreur mise à jour");
+            }
+
+            currentBook.aLire = !currentBook.aLire;
+
+            updateModalButton(currentBook.aLire);
+
+            fetchBooks();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Erreur réseau");
+        }
+    });
+}
+
+/* ======================================
+   PAGE A LIRE
+====================================== */
+
+function displayALireBooks(data) {
+
+    alireContainer.innerHTML = "";
+
+    if (data.length === 0) {
+
+        alireContainer.innerHTML = `
+            <p>Aucun livre dans votre liste.</p>
+        `;
+
+        return;
+    }
+
+    data.forEach(book => {
+
+        const card = document.createElement("div");
+
+        card.classList.add("book-card");
+
+        card.innerHTML = `
+            <img src="${book.couverture}">
+            <h3>${book.titre}</h3>
+            <p>${book.auteur}</p>
+
+            <button class="btn-delete remove-btn">
+                Retirer
+            </button>
+        `;
+
+        const removeBtn = card.querySelector(".remove-btn");
+
+        removeBtn.addEventListener("click", async () => {
+
+            try {
+
+                const response = await fetch(`${API_URL}/${book.id}`, {
+
+                    method: "PATCH",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        aLire: false
+                    })
+                });
+
+                if (!response.ok) {
+
+                    throw new Error("Erreur suppression");
+                }
+
+                fetchBooks();
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert("Erreur réseau");
+            }
+        });
+
+        alireContainer.appendChild(card);
+    });
+}
+
+/* ======================================
+   DISPLAY ADMIN TABLE
+====================================== */
+
+function displayAdminBooks(data) {
+
+    tableBody.innerHTML = "";
+
+    data.forEach(book => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>
+                <img src="${book.couverture}">
+            </td>
+
+            <td>${book.titre}</td>
+            <td>${book.auteur}</td>
+            <td>${book.genre}</td>
+
+            <td>
+                <button class="btn-submit edit-btn">
+                    Modifier
+                </button>
+
+                <button class="btn-delete delete-btn">
+                    Supprimer
+                </button>
+            </td>
+        `;
+
+        /* EDIT */
+        row.querySelector(".edit-btn")
+            .addEventListener("click", () => {
+                fillForm(book);
+            });
+
+        /* DELETE */
+        row.querySelector(".delete-btn")
+            .addEventListener("click", () => {
+                deleteBook(book.id);
+            });
+
+        tableBody.appendChild(row);
+    });
+}
+
+/* ======================================
+   ADD / UPDATE BOOK
+====================================== */
+

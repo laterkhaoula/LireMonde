@@ -1,28 +1,59 @@
 {
   "books": [
     {
-      "id": "1",
-      "titre": "Les Misérables",
-      "auteur": "Victor Hugo",
-      "genre": "Classique",
-      "description": "Jean Valjean tente de reconstruire sa vie après des années de prison dans la France du XIXe siècle.",
-      "couverture": "https://covers.openlibrary.org/b/id/8231856-L.jpg",
+      "id": "4",
+      "titre": "The Wrong Prey",
+      "auteur": "John Sandford",
+      "genre": "Drame",
+      "description": "Une enquête policière sombre et complexe.",
+      "couverture": "images/pesy-1.jpg",
       "aLire": false
     },
     {
-     
+      "id": "5",
+      "titre": "The Tangled Lands",
+      "auteur": "Paolo Bacigalupi",
+      "genre": "Science-fiction",
+      "description": "Un monde de fantasy et de science-fiction post-apocalyptique.",
+      "couverture": "images/book1.webp",
+      "aLire": true
     },
     {
-      
+      "id": "Y9LqD7ll8Xo",
+      "titre": "covier",
+      "auteur": "harlier",
+      "genre": "Action",
+      "couverture": "images/pesyco-3.webp",
+      "description": "la monde en roi de la souffrance et la motivation ",
+      "aLire": false
     },
     {
-      
+      "id": "6",
+      "titre": "Atomic Habits",
+      "auteur": "James Clear",
+      "genre": "Développement personnel",
+      "description": "Un guide pratique pour construire de bonnes habitudes.",
+      "couverture": "https://images-na.ssl-images-amazon.com/images/I/91bYsX41DVL.jpg",
+      "aLire": false
     },
     {
-      
+      "id": "7",
+      "titre": "The Psychology of Money",
+      "auteur": "Morgan Housel",
+      "genre": "Seance",
+      "description": "Des leçons intemporelles sur l'argent et le comportement humain.",
+      "couverture": "images/seance-3.webp",
+      "aLire": false
     },
     {
-      
+      "id": "8",
+      "titre": "Dan brown",
+      "auteur": "George Orwell",
+      "genre": "Action",
+      "description": "Une dystopie sur la surveillance et le pouvoir totalitaire.",
+      "couverture": "images/R.jpg",
+      "aLire": false
     }
   ]
+  
 }

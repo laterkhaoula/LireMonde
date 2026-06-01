@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LireMonde - Culture Numérique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">📖 LireMonde</div>
+        <nav>
+            <button onclick="switchPage('accueil')">Accueil</button>
+            <button onclick="switchPage('alire')">À Lire</button>
+            <button onclick="switchPage('admin')">Admin</button>
+        </nav>
+        <input type="text" id="globalSearch" placeholder="Rechercher un livre..." oninput="handleSearch()">
+    </header>
+
+    <main id="page-accueil" class="page active">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Lire Monde</h1>
+                <p>Explorez un vaste monde de livres sur notre plateforme de lecture interactive. <br><br>
+                Découvrez de nouveaux auteurs, <br>
+                trouvez vos ouvrages préférés et profitez d’une expérience de lecture simple, <br>
+                immersive et enrichissante à tout moment</p>
+                <button class="btn-commencer" onclick="scrollToBooks()" >
+                Commencer à lire
+              </button>               
+            </div>
+            <div class="hero-image">
+                <img src="images/bac.jpg" alt="Lecture">
+            </div>
+        </section>
+
+        <div id="genres-container" class="genres-bar"></div>
+
+        <section class="books-grid" id="books-container"></section>
+    </main>
+
+    <main id="page-alire" class="page">
+        <h2>Ma Liste "À Lire" ❤️</h2>
+        <section class="books-grid" id="alire-container"></section>
+    </main>
+
+    <main id="page-admin" class="page">
+        <h2>Espace Administration 🛠️</h2>
+        
+        <button id="btn-ouvrir-ajout" onclick="ouvrirFormulaireAjout()">
+            ➕ Ajouter un nouveau livre
+        </button>
+        
+        <form id="book-form">
+            <input type="hidden" id="book-id">
+            <input type="text" id="book-title" placeholder="Titre" required>
+            <input type="text" id="book-author" placeholder="Auteur" required>
+            <input type="text" id="book-genre" placeholder="Genre (ex: Action, Fantasy)" required>
+            <input type="text" id="book-cover" placeholder="Lien de l'image de couverture" required>
+            <textarea id="book-desc" placeholder="Description" required></textarea>
+            <button type="submit" id="form-btn">Ajouter le livre</button>
+        </form>
+
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Couverture</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Genre</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="admin-table-body"></tbody>
+        </table>
+    </main>
+
+    <div id="book-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body" id="modal-body-content"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact: contact@liremonde.com | Phone: 0524XXXXXX</p>
+        <p>&copy; 2026 LireMonde - ReadSphere</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

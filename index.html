@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LireMonde - Culture Numérique</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header>
@@ -23,12 +25,12 @@
             <div class="hero-text">
                 <h1>Lire Monde</h1>
                 <p>Explorez un vaste monde de livres sur notre plateforme de lecture interactive. <br><br>
-                Découvrez de nouveaux auteurs, <br>
-                trouvez vos ouvrages préférés et profitez d’une expérience de lecture simple, <br>
-                immersive et enrichissante à tout moment</p>
-                <button class="btn-commencer" onclick="scrollToBooks()" >
-                Commencer à lire
-              </button>               
+                    Découvrez de nouveaux auteurs, <br>
+                    trouvez vos ouvrages préférés et profitez d’une expérience de lecture simple, <br>
+                    immersive et enrichissante à tout moment</p>
+                <button class="btn-commencer" onclick="scrollToBooks()">
+                    Commencer à lire
+                </button>
             </div>
             <div class="hero-image">
                 <img src="images/bac.jpg" alt="Lecture">
@@ -47,11 +49,11 @@
 
     <main id="page-admin" class="page">
         <h2>Espace Administration 🛠️</h2>
-        
+
         <button id="btn-ouvrir-ajout" onclick="ouvrirFormulaireAjout()">
             ➕ Ajouter un nouveau livre
         </button>
-        
+
         <form id="book-form">
             <input type="hidden" id="book-id">
             <input type="text" id="book-title" placeholder="Titre" required>
@@ -90,4 +92,5 @@
 
     <script src="app.js"></script>
 </body>
+
 </html>

@@ -7,27 +7,27 @@ let currentGenre = "Tous";
 let currentPage = localStorage.getItem('currentPage') || "accueil";
 
 function switchPage(pageId) {
-    currentPage = pageId; 
+    currentPage = pageId;
     localStorage.setItem('currentPage', pageId); // Sauvegardi l-page l-haliya f l-browser
-    
+
     document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    
+
     const targetPage = document.getElementById(`page-${pageId}`);
     if (targetPage) {
         targetPage.classList.add('active');
     }
-    
+
     // التعديل هنا: كاخفاو لبار ديال البحث يلا كنا ف الأدمين أو ف صفحة alire
     const searchInput = document.getElementById('globalSearch');
     if (searchInput) {
         if (pageId === 'admin' || pageId === 'alire') {
-            searchInput.style.display = 'none'; 
+            searchInput.style.display = 'none';
         } else {
-            searchInput.style.display = 'block'; 
+            searchInput.style.display = 'block';
         }
     }
-    
-    render(); 
+
+    render();
 }
 
 // 2. Fetch data de l'API
@@ -58,12 +58,12 @@ function render() {
 function renderAccueil() {
     const container = document.getElementById('books-container');
     if (!container) return;
-    
+
     const searchElement = document.getElementById('globalSearch');
     const searchVal = searchElement ? searchElement.value.toLowerCase() : "";
-    
+
     container.innerHTML = "";
-    
+
     const filtered = allBooks.filter(book => {
         const matchGenre = (currentGenre === "Tous" || book.genre === currentGenre);
         const matchSearch = book.titre.toLowerCase().includes(searchVal) || book.auteur.toLowerCase().includes(searchVal);
@@ -86,9 +86,9 @@ function renderAccueil() {
 function renderGenres() {
     const container = document.getElementById('genres-container');
     if (!container) return;
-    
+
     const genres = ["Tous", ...new Set(allBooks.map(b => b.genre))];
-    
+
     container.innerHTML = genres.map(genre => `
         <button type="button" class="${currentGenre === genre ? 'active' : ''}" onclick="filterByGenre('${genre}')">${genre}</button>
     `).join('');
@@ -108,11 +108,11 @@ function handleSearch() {
 function renderALire() {
     const container = document.getElementById('alire-container');
     if (!container) return;
-    
+
     container.innerHTML = "";
-    
+
     const favorites = allBooks.filter(b => b.aLire);
-    if(favorites.length === 0) {
+    if (favorites.length === 0) {
         container.innerHTML = "<p>Aucun livre dans votre liste d'attente.</p>";
         return;
     }
@@ -133,28 +133,31 @@ function renderALire() {
 async function toggleALire(id) {
     const book = allBooks.find(b => b.id === id);
     if (!book) return;
-    
+
     try {
         const response = await fetch(`${API_URL}/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ aLire: !book.aLire })
         });
-        if(response.ok) {
-            book.aLire = !book.aLire; 
-            render();
-        }
-    } catch (error) { console.error(error); }
+
+      if (response.ok) {
+    book.aLire = !book.aLire;
+    render();
+}
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 // 8. Modale Détails
 function openModal(id) {
     const book = allBooks.find(b => b.id === id);
     if (!book) return;
-    
+
     const content = document.getElementById('modal-body-content');
     if (!content) return;
-    
+
     content.innerHTML = `
         <div style="display:flex; gap:20px; flex-wrap: wrap;">
             <img src="${book.couverture}" style="width:150px; height:220px; object-fit:cover; border-radius:4px;">
@@ -172,12 +175,8 @@ function openModal(id) {
     document.getElementById('book-modal').style.display = 'flex';
 }
 function closeModal() { document.getElementById('book-modal').style.display = 'none'; }
-function scrollToBooks() {
-    const booksContainer = document.getElementById('books-container');
-    if (booksContainer) {
-        booksContainer.scrollIntoView({ behavior: 'smooth' });
-    }
-}
+
+
 
 
 // ================= CRUD ADMIN =================
@@ -186,10 +185,10 @@ function scrollToBooks() {
 function ouvrirFormulaireAjout() {
     const form = document.getElementById('book-form');
     if (form) form.reset();
-    
+
     document.getElementById('book-id').value = "";
     document.getElementById('form-btn').innerText = "Ajouter le livre";
-    
+
     if (form) form.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -197,7 +196,7 @@ function ouvrirFormulaireAjout() {
 function renderAdminTable() {
     const tbody = document.getElementById('admin-table-body');
     if (!tbody) return;
-    
+
     tbody.innerHTML = "";
     allBooks.forEach(book => {
         tbody.innerHTML += `
@@ -237,20 +236,20 @@ if (bookForm) {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(bookData)
                 });
-                if(response.ok) await fetchBooks();
+                if (response.ok) await fetchBooks();
             } else { // Mode Ajout (POST)
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(bookData)
                 });
-                if(response.ok) await fetchBooks();
+                if (response.ok) await fetchBooks();
             }
-            
+
             document.getElementById('book-form').reset();
             document.getElementById('book-id').value = "";
             document.getElementById('form-btn').innerText = "Ajouter le livre";
-        } catch(error) { console.error(error); }
+        } catch (error) { console.error(error); }
     });
 }
 
@@ -258,7 +257,7 @@ if (bookForm) {
 function setupEdit(id) {
     const book = allBooks.find(b => b.id === id);
     if (!book) return;
-    
+
     document.getElementById('book-id').value = book.id;
     document.getElementById('book-title').value = book.titre;
     document.getElementById('book-author').value = book.auteur;
@@ -266,18 +265,18 @@ function setupEdit(id) {
     document.getElementById('book-cover').value = book.couverture;
     document.getElementById('book-desc').value = book.description;
     document.getElementById('form-btn').innerText = "Enregistrer les modifications";
-    
+
     const form = document.getElementById('book-form');
     if (form) form.scrollIntoView({ behavior: 'smooth' });
 }
 
 // 13. Supprimer (DELETE API)
 async function deleteBook(id) {
-    if(confirm("Voulez-vous vraiment supprimer ce livre ?")) {
+    if (confirm("Voulez-vous vraiment supprimer ce livre ?")) {
         try {
             const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
-            if(response.ok) await fetchBooks(); 
-        } catch(error) { console.error(error); }
+            if (response.ok) await fetchBooks();
+        } catch (error) { console.error(error); }
     }
 }
 

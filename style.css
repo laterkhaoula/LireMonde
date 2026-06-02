@@ -5,8 +5,8 @@
     --primary-hover: #40635b;
     --text-color: #2f3e46;
     --white: #ffffff;
-    --shadow-light: 0 4px 12px rgba(0,0,0,0.06);
-    --shadow-smooth: 0 10px 25px rgba(0,0,0,0.08);
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-smooth: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 /* تأمين شريط التمرير الجانبي لمنع الارتعاش والاهتزاز نهائياً */
@@ -21,9 +21,9 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.5;
-    
+
     /* تصغير زوم الموقع كامل بـ 5% باش يعطي مظهر مجموع ومريح للعين */
-    zoom: 0.95; 
+    zoom: 0.95;
 }
 
 /* Navbar */
@@ -33,11 +33,13 @@ header {
     align-items: center;
     padding: 12px 5%;
     background-color: var(--card-bg);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 40px;
     box-shadow: var(--shadow-light);
-    height: 45px; /* طول ثابت لحماية الـ Navbar من الحركة المفاجئة */
-    margin: 20px 5% 0 5%; /* زدنا الفراغ الفوقاني باش يبعد الهيدر على الفوق */
+    height: 45px;
+    /* طول ثابت لحماية الـ Navbar من الحركة المفاجئة */
+    margin: 20px 5% 0 5%;
+    /* زدنا الفراغ الفوقاني باش يبعد الهيدر على الفوق */
 }
 
 header nav button {
@@ -59,7 +61,7 @@ header nav button:hover {
 header input {
     padding: 8px 16px;
     border-radius: 20px;
-    border: 1px solid rgba(0,0,0,0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     background-color: rgba(255, 255, 255, 0.6);
     outline: none;
     font-family: inherit;
@@ -73,22 +75,23 @@ header input:focus {
 }
 
 /* SPA Pages management - النظام السحري للاختفاء السلس ومنع الرعدة */
-.page { 
+.page {
     height: 0;
     overflow: hidden;
     opacity: 0;
-    padding: 0 5%; 
-    pointer-events: none; 
+    padding: 0 5%;
+    pointer-events: none;
     transition: opacity 0.2s ease;
 }
 
-.page.active { 
+.page.active {
     height: auto;
     overflow: visible;
     opacity: 1;
-    padding: 45px 5%; /* زدنا الفراغ العمودي باش تبعد الصفحة على الهيدر والفوتر */
+    padding: 45px 5%;
+    /* زدنا الفراغ العمودي باش تبعد الصفحة على الهيدر والفوتر */
     pointer-events: auto;
-    min-height: 75vh; 
+    min-height: 75vh;
 }
 
 /* Hero Section */
@@ -96,17 +99,21 @@ header input:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 60px; /* زدنا الفراغ (البعاد) بين الكتابة والصورة الدائرية */
-    margin-bottom: 60px; /* زدنا الفراغ باش تبعد على الأزرار اللي تحتها */
-    min-height: 50vh;    
+    gap: 60px;
+    /* زدنا الفراغ (البعاد) بين الكتابة والصورة الدائرية */
+    margin-bottom: 60px;
+    /* زدنا الفراغ باش تبعد على الأزرار اللي تحتها */
+    min-height: 50vh;
 }
 
 .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* محاذاة لليسر لتتناسق مع البوتون والصورة */
-    text-align: left; 
-    gap: 20px; /* زدنا الفراغ بين العناوين والفقرة والبوتون */
+    align-items: flex-start;
+    /* محاذاة لليسر لتتناسق مع البوتون والصورة */
+    text-align: left;
+    gap: 20px;
+    /* زدنا الفراغ بين العناوين والفقرة والبوتون */
     max-width: 550px;
 }
 
@@ -126,13 +133,13 @@ header input:focus {
 }
 
 .btn-commencer {
-    background-color: #718f97; 
+    background-color: #718f97;
     color: var(--white);
     padding: 12px 32px;
     font-size: 1rem;
     font-weight: 600;
     border: none;
-    border-radius: 25px; 
+    border-radius: 25px;
     cursor: pointer;
     margin-top: 10px;
     box-shadow: 0 4px 10px rgba(113, 143, 151, 0.3);
@@ -140,17 +147,19 @@ header input:focus {
 }
 
 .btn-commencer:hover {
-    background-color: var(--primary-hover); 
-    transform: translateY(-3px); 
+    background-color: var(--primary-hover);
+    transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(64, 99, 91, 0.4);
 }
 
 .hero-image img {
-    width: 550px;           
-    height: 320px;          
-    border-radius: 160px;   /* شكل بيضاوي مثالي ومتناسق */
-    object-fit: cover; 
-    box-shadow: 0px 25px 45px rgba(0, 0, 0, 0.25); /* ضل ناعم وعميق يعطي تأثير احترافي */
+    width: 550px;
+    height: 320px;
+    border-radius: 160px;
+    /* شكل بيضاوي مثالي ومتناسق */
+    object-fit: cover;
+    box-shadow: 0px 25px 45px rgba(0, 0, 0, 0.25);
+    /* ضل ناعم وعميق يعطي تأثير احترافي */
     transition: transform 0.3s ease;
 }
 
@@ -159,23 +168,26 @@ header input:focus {
 }
 
 /* Genres Bar */
-.genres-bar { 
-    margin: 60px 0 100px 0; /* زدنا المسافة الفوقانية والتحتانية باش تبعد على الـ Hero وعلى الكروت د الكتب */
+.genres-bar {
+    margin: 60px 0 100px 0;
+    /* زدنا المسافة الفوقانية والتحتانية باش تبعد على الـ Hero وعلى الكروت د الكتب */
     display: flex;
-    gap: 16px; /* زدنا البُعد والفراغ بين الأزرار د الأصناف */
-    justify-content: center; 
+    gap: 16px;
+    /* زدنا البُعد والفراغ بين الأزرار د الأصناف */
+    justify-content: center;
     flex-wrap: wrap;
 }
 
-.genres-bar button { 
-    padding: 8px 22px; 
-    border: none; 
-    border-radius: 20px; /* حواف دائرية تناسب لغة ديزاين الموقع */
+.genres-bar button {
+    padding: 8px 22px;
+    border: none;
+    border-radius: 20px;
+    /* حواف دائرية تناسب لغة ديزاين الموقع */
     font-family: inherit;
     font-weight: 500;
     font-size: 14px;
-    cursor: pointer; 
-    background: var(--card-bg); 
+    cursor: pointer;
+    background: var(--card-bg);
     color: var(--text-color);
     transition: all 0.2s ease;
 }
@@ -184,19 +196,20 @@ header input:focus {
     background-color: rgba(82, 121, 111, 0.2);
 }
 
-.genres-bar button.active { 
-    background: var(--primary); 
-    color: var(--white); 
+.genres-bar button.active {
+    background: var(--primary);
+    color: var(--white);
     box-shadow: 0 4px 10px rgba(82, 121, 111, 0.3);
 }
 
 /* Grille de livres - 3 كروت أنيقة متناسقة وثابتة */
 .books-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 60px 40px; /* زدنا المسافات والفراغات بين الكروت بشكل ملحوظ ومريح */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px 40px;
+    /* زدنا المسافات والفراغات بين الكروت بشكل ملحوظ ومريح */
     margin-top: 40px;
-    justify-items: center; 
+    justify-items: center;
 }
 
 .book-card {
@@ -204,14 +217,14 @@ header input:focus {
     padding: 16px;
     border-radius: 16px;
     text-align: center;
-    width: 220px;        
-    box-shadow: var(--shadow-light); 
-    border: 1px solid rgba(0,0,0,0.02);
+    width: 220px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(0, 0, 0, 0.02);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .book-card:hover {
-    transform: translateY(-6px); 
+    transform: translateY(-6px);
     box-shadow: var(--shadow-smooth);
 }
 
@@ -219,37 +232,38 @@ header input:focus {
 .book-card img {
     display: block;
     width: 100%;
-    height: 310px;       
+    height: 310px;
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
     margin-bottom: 14px;
 }
 
-.book-card h3 { 
-    font-size: 16px; 
-    font-weight: 600; 
-    margin: 8px 0 4px; 
+.book-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 8px 0 4px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* يحمي الكارط من التخريب إذا كان العنوان طويل */
+    text-overflow: ellipsis;
+    /* يحمي الكارط من التخريب إذا كان العنوان طويل */
 }
 
-.book-card p { 
-    font-size: 13px; 
-    margin: 0 0 12px; 
-    opacity: 0.75; 
+.book-card p {
+    font-size: 13px;
+    margin: 0 0 12px;
+    opacity: 0.75;
 }
 
-.book-card button { 
-    padding: 7px 16px; 
-    border: none; 
-    border-radius: 20px; 
+.book-card button {
+    padding: 7px 16px;
+    border: none;
+    border-radius: 20px;
     font-family: inherit;
     font-weight: 600;
     font-size: 13px;
-    cursor: pointer; 
-    background: var(--bg-color); 
+    cursor: pointer;
+    background: var(--bg-color);
     color: var(--primary);
     transition: all 0.2s ease;
 }
@@ -262,7 +276,8 @@ header input:focus {
 /* ================= ADMINISTRATION & UTILITIES ================= */
 
 #btn-ouvrir-ajout {
-    margin-bottom: 35px; /* مسافة أكبر تحت الزر */
+    margin-bottom: 35px;
+    /* مسافة أكبر تحت الزر */
     background-color: var(--primary);
     color: var(--white);
     padding: 12px 24px;
@@ -282,20 +297,23 @@ header input:focus {
 }
 
 /* Table Admin */
-.admin-table { 
-    width: 100%; 
-    border-collapse: collapse; 
-    margin-top: 30px; /* زيادة الفراغ فوق الجدول */
-    background: var(--white); 
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    /* زيادة الفراغ فوق الجدول */
+    background: var(--white);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-light);
 }
 
-.admin-table th, .admin-table td { 
-    padding: 16px 14px; /* توسيع أسطر الجدول */
-    border-bottom: 1px solid #eee; 
-    text-align: left; 
+.admin-table th,
+.admin-table td {
+    padding: 16px 14px;
+    /* توسيع أسطر الجدول */
+    border-bottom: 1px solid #eee;
+    text-align: left;
 }
 
 .admin-table th {
@@ -304,126 +322,197 @@ header input:focus {
     color: var(--text-color);
 }
 
-.admin-table img { 
-    width: 45px; 
-    height: 65px; 
-    object-fit: cover; 
+.admin-table img {
+    width: 45px;
+    height: 65px;
+    object-fit: cover;
     border-radius: 4px;
 }
 
-.admin-table button { 
-    padding: 6px 14px; 
-    border: none; 
-    border-radius: 6px; 
+.admin-table button {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
     font-family: inherit;
     font-weight: 500;
-    cursor: pointer; 
-    margin-right: 8px; 
+    cursor: pointer;
+    margin-right: 8px;
     transition: opacity 0.2s;
 }
-.admin-table button:hover { opacity: 0.9; }
 
-/* Formulaire Admin */
-#book-form { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 16px; /* زيادة الفراغات داخل الفورم */
-    max-width: 500px; 
-    margin-bottom: 40px; 
-    background: var(--white); 
-    padding: 24px; 
-    border-radius: 14px; 
-    box-shadow: var(--shadow-light);
-    border: 1px solid rgba(0,0,0,0.02);
+.admin-table button:hover {
+    opacity: 0.9;
 }
 
-#book-form input, #book-form textarea { 
-    padding: 11px 14px; 
-    border: 1px solid #ddd; 
-    border-radius: 8px; 
-    font-family: inherit; 
+/* Formulaire Admin */
+#book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* زيادة الفراغات داخل الفورم */
+    max-width: 500px;
+    margin-bottom: 40px;
+    background: var(--white);
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+#book-form input,
+#book-form textarea {
+    padding: 11px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
     outline: none;
     transition: border 0.2s;
 }
 
-#book-form input:focus, #book-form textarea:focus {
+#book-form input:focus,
+#book-form textarea:focus {
     border-color: var(--primary);
 }
 
-#book-form button { 
-    background: var(--primary); 
-    color: var(--white); 
-    border: none; 
-    padding: 12px; 
-    cursor: pointer; 
+#book-form button {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 12px;
+    cursor: pointer;
     font-family: inherit;
-    font-weight: 600; 
-    border-radius: 8px; 
+    font-weight: 600;
+    border-radius: 8px;
     transition: background 0.2s;
 }
-#book-form button:hover { background: var(--primary-hover); }
+
+#book-form button:hover {
+    background: var(--primary-hover);
+}
 
 /* Modale */
-.modal { 
-    display: none; 
-    position: fixed; 
-    top:0; left:0; 
-    width:100%; height:100%; 
-    background: rgba(47, 62, 70, 0.6); 
-    backdrop-filter: blur(4px); /* تأثير ضبابي زوين خلف المودال */
-    justify-content: center; 
-    align-items: center; 
-    z-index: 2000; /* الحفاظ على ظهوره في الأعلى دائماً */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(47, 62, 70, 0.6);
+    backdrop-filter: blur(4px);
+    /* تأثير ضبابي زوين خلف المودال */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    /* الحفاظ على ظهوره في الأعلى دائماً */
 }
 
-.modal-content { 
-    background: var(--white); 
-    padding: 30px; 
-    border-radius: 16px; 
-    max-width: 550px; 
-    width: 90%; 
-    position: relative; 
-    color: var(--text-color); 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+.modal-content {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 550px;
+    width: 90%;
+    position: relative;
+    color: var(--text-color);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-.close-modal { 
-    position: absolute; 
-    top: 14px; 
-    right: 18px; 
-    font-size: 24px; 
-    cursor: pointer; 
+.close-modal {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 24px;
+    cursor: pointer;
     opacity: 0.6;
     transition: opacity 0.2s;
 }
-.close-modal:hover { opacity: 1; }
+
+.close-modal:hover {
+    opacity: 1;
+}
 
 /* Footer */
-footer { 
-    background: #d4e2e0; 
-    text-align: center; 
-    padding: 30px; /* توسيع الفوتر */
-    margin-top: 80px; /* إبعاده عن المحتوى الفوقاني */
-    font-size: 14px; 
+footer {
+    background: #d4e2e0;
+    text-align: center;
+    padding: 30px;
+    /* توسيع الفوتر */
+    margin-top: 80px;
+    /* إبعاده عن المحتوى الفوقاني */
+    font-size: 14px;
     font-weight: 500;
     opacity: 0.9;
 }
 
 /* Responsive التجاوب مع كاع الشاشات والموبايل */
 @media (max-width: 990px) {
-    .books-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 25px; }
-    .hero { gap: 30px; }
-    .hero-image img { width: 400px; height: 260px; }
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 25px;
+    }
+
+    .hero {
+        gap: 30px;
+    }
+
+    .hero-image img {
+        width: 400px;
+        height: 260px;
+    }
 }
 
 @media (max-width: 768px) {
-    body { zoom: 1; /* إلغاء الزوم ف الموبايل باش يبقى طبيعي ومريح المتصفح */ }
-    .hero { flex-direction: column; text-align: center; min-height: auto; gap: 30px; }
-    .hero-content { align-items: center; text-align: center; gap: 15px; }
-    .hero-image img { width: 100%; max-width: 450px; height: 280px; }
-    .books-grid { grid-template-columns: 1fr; gap: 35px; }
-    header { flex-direction: column; gap: 10px; height: auto; padding: 15px; border-radius: 20px; margin: 15px 5% 0 5%; }
-    header nav { display: flex; gap: 5px; }
-    header nav button { margin-right: 5px; font-size: 14px; }
-    .genres-bar { margin: 40px 0 50px 0; gap: 10px; }
+    body {
+        zoom: 1;
+        /* إلغاء الزوم ف الموبايل باش يبقى طبيعي ومريح المتصفح */
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        min-height: auto;
+        gap: 30px;
+    }
+
+    .hero-content {
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: 450px;
+        height: 280px;
+    }
+
+    .books-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+        height: auto;
+        padding: 15px;
+        border-radius: 20px;
+        margin: 15px 5% 0 5%;
+    }
+
+    header nav {
+        display: flex;
+        gap: 5px;
+    }
+
+    header nav button {
+        margin-right: 5px;
+        font-size: 14px;
+    }
+
+    .genres-bar {
+        margin: 40px 0 50px 0;
+        gap: 10px;
+    }
 }

@@ -2,13 +2,15 @@ const API_URL = "http://localhost:3004/books";
 let allBooks = [];
 let currentGenre = "Tous";
 
-// 1. Navigation SPA (Db kantsauvegarda l-page f localStorage)
-// Ila malqanach chi page mkhbya, kandiro 'accueil' hiya l-lella
+
 let currentPage = localStorage.getItem('currentPage') || "accueil";
+
+
+
 
 function switchPage(pageId) {
     currentPage = pageId;
-    localStorage.setItem('currentPage', pageId); // Sauvegardi l-page l-haliya f l-browser
+    localStorage.setItem('currentPage', pageId); 
 
     document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
 
@@ -17,7 +19,7 @@ function switchPage(pageId) {
         targetPage.classList.add('active');
     }
 
-    // التعديل هنا: كاخفاو لبار ديال البحث يلا كنا ف الأدمين أو ف صفحة alire
+    
     const searchInput = document.getElementById('globalSearch');
     if (searchInput) {
         if (pageId === 'admin' || pageId === 'alire') {
@@ -42,7 +44,7 @@ async function fetchBooks() {
     }
 }
 
-// 3. Render General (Db kay-affichi ghir l-page l-haliya li nta fiha)
+
 function render() {
     if (currentPage === 'accueil') {
         renderAccueil();
@@ -54,7 +56,6 @@ function render() {
     }
 }
 
-// 4. Page d'accueil (Grille + Recherche + Filtrage)
 function renderAccueil() {
     const container = document.getElementById('books-container');
     if (!container) return;
@@ -82,7 +83,7 @@ function renderAccueil() {
     });
 }
 
-// 5. Générer dynamiquement les boutons de genres
+// 5. Générer dynamiquement les boutons de genresvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 function renderGenres() {
     const container = document.getElementById('genres-container');
     if (!container) return;
@@ -93,7 +94,6 @@ function renderGenres() {
         <button type="button" class="${currentGenre === genre ? 'active' : ''}" onclick="filterByGenre('${genre}')">${genre}</button>
     `).join('');
 }
-
 function filterByGenre(genre) {
     currentGenre = genre;
     renderAccueil();
@@ -104,7 +104,7 @@ function handleSearch() {
     renderAccueil();
 }
 
-// 6. Page "À Lire"
+// 6. Page "À Lire" 
 function renderALire() {
     const container = document.getElementById('alire-container');
     if (!container) return;
@@ -129,7 +129,7 @@ function renderALire() {
     });
 }
 
-// 7. Toggle À Lire (PATCH API)
+// 7. Toggle À Lire (PATCH API)aaaaaaaaaaaaaaaaaaa7fahem
 async function toggleALire(id) {
     const book = allBooks.find(b => b.id === id);
     if (!book) return;
@@ -150,7 +150,7 @@ async function toggleALire(id) {
     }
 }
 
-// 8. Modale Détails
+// 8. Modale Détails aaaaaaaaaaaaaaaaaaaaaaaaaaaaafahem
 function openModal(id) {
     const book = allBooks.find(b => b.id === id);
     if (!book) return;
@@ -179,7 +179,6 @@ function closeModal() { document.getElementById('book-modal').style.display = 'n
 
 
 
-// ================= CRUD ADMIN =================
 
 // 9. Préparer le formulaire pour un NOUVEL AJOUT
 function ouvrirFormulaireAjout() {
@@ -214,7 +213,7 @@ function renderAdminTable() {
     });
 }
 
-// 11. Formulaire : Soumission (Ajouter OU Modifier via POST / PUT API)
+// 11. Formulaire : Soumission (Ajouter OU Modifier 
 const bookForm = document.getElementById('book-form');
 if (bookForm) {
     bookForm.addEventListener('submit', async (e) => {
@@ -230,7 +229,7 @@ if (bookForm) {
         };
 
         try {
-            if (id) { // Mode Edition (PUT)
+            if (id) { 
                 const response = await fetch(`${API_URL}/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -253,7 +252,7 @@ if (bookForm) {
     });
 }
 
-// 12. Setup Modification (PUT)
+// 12. Setup Modification (PUT)/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 
 function setupEdit(id) {
     const book = allBooks.find(b => b.id === id);
     if (!book) return;
@@ -285,3 +284,9 @@ window.onload = async () => {
     await fetchBooks(); // 1. Njibo l-data mn l-API dima l-oula
     switchPage(currentPage); // 2. N-activew l-page li knti fiha akhir mra automatic mn localStorage
 };
+
+
+
+
+
+
